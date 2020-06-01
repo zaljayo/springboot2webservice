@@ -27,6 +27,10 @@ public class OAuthAttributes {
 
     //of() OAuth2User에서 반환하는 사용자 정보는 Map 이기 때문에 값 하나하나를 변환해야함
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes){
+
+        if("naver".equals(registrationId)){
+            return ofNaver("id", attributes);
+        }
         return ofGoogle(userNameAttributeName, attributes);
     }
 
@@ -39,6 +43,20 @@ public class OAuthAttributes {
                 .nameAttributeKey(userNameAttributeName)
                 .build();
     }
+
+
+    private static OAuthAttributes ofNaver(String userNameAttributeName, Map<String, Object> attributes) {
+        Map<String, Object> response = (Map<String, Object>) attributes.get("response");
+
+        return OAuthAttributes.builder()
+                .name((String) response.get("name"))
+                .email((String) response.get("email"))
+                .picture((String) response.get("profileImage"))
+                .attributes(response)
+                .nameAttributeKey(userNameAttributeName)
+                .build();
+    }
+
 
     //toEntity() User 엔티티 생성, OAuthAttributes 에서 엔티티를 생성하는 시점은 처음 가입시, 가입시 기본권한을 GUEST로 주기위해 role 빌더값에 Role.GUSET를 사용, OAuthAttributes 클래스 생성이 끝났으면 같은 패키지에 SessionUser 클래스 생성
     public User toEntity(){
