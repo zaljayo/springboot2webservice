@@ -1,7 +1,6 @@
 package com.jhjeong.book.springboot.domain.user;
 
 import com.jhjeong.book.springboot.domain.BaseTimeEntity;
-import com.jhjeong.book.springboot.domain.user.Role;
 
 import lombok.Builder;
 import lombok.Getter;
