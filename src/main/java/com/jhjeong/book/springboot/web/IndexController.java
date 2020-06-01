@@ -1,5 +1,7 @@
 package com.jhjeong.book.springboot.web;
 
+import com.jhjeong.book.springboot.config.auth.LoginUser;
+import com.jhjeong.book.springboot.config.auth.dto.SessionUser;
 import com.jhjeong.book.springboot.service.PostsService;
 import com.jhjeong.book.springboot.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +18,14 @@ public class IndexController {
     private final PostsService postsService;
 
     @GetMapping("/") //postsService.findAllDesc()로 가져온 결과를 posts로 index,mustache에 전달
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user){
         model.addAttribute("posts", postsService.findAllDesc());
+
+        //SessionUser user = (SessionUser) httpsession.getAttribute("user");
+
+        if(user!=null){
+            model.addAttribute("userName", user.getName());
+        }
         return "index";
     }
 
