@@ -10,7 +10,7 @@ branches:
 cache:
   directories:
     - '$HOME/.m2/repository'
-    - '$Home/.gradle'
+    - '$HOME/.gradle'
 script: "./gradlew clean build"
 
 #before_install:
@@ -32,6 +32,7 @@ deploy:
     acl: private
     local_dir: deploy
     wait-until-deployed: true
+
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
