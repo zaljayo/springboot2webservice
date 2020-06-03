@@ -13,8 +13,8 @@ cache:
     - '$Home/.gradle'
 script: "./gradlew clean build"
 
-before_install:
-  - chmod +x gradlew
+#before_install:
+#  - chmod +x gradlew
 
 # aws s3에 저장
 before_deploy:
