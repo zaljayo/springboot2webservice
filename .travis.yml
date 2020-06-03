@@ -23,7 +23,7 @@ notifications:
       - zaljayo@hanmail.net
 
 before_deploy:
-  - zip -r springboot2-werbservice *
+  - zip -r springboot2-webservice *
   - mkdir -p deploy
   - mv springboot2-webservice.zip deploy/springboot2-webservice.zip
 
