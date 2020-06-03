@@ -9,7 +9,7 @@ cp $REPOSITORY/$PROJECT_NAME/build/libs/*.jar $REPOSITORY/
 
 echo ">현재 구동중인 애플리케이션 pid 확인"
 
-CURRENT_PID=$(pgrep -fl springboot2webservice | grep jar | awk '{print $1}')
+CURRENT_PID=$(pgrep -fl $PROJECT_NAME | grep jar | awk '{print $1}')
 
 echo "현재 구동중인 애플리케이션 pid: $CURRENT_PID"
 
@@ -24,7 +24,7 @@ fi
 
 echo ">새 애플리케이션 배포"
 
-JAR_NAME=$(ls -tr /home/ec2-user/app/step2/zip/*.jar | tail -n 1)
+JAR_NAME=$(ls -tr $REPOSITORY/*.jar | tail -n 1)
 
 echo ">JAR Name: $JAR_NANE"
 #ls -tr /home/ec2-user/app/step2/ | grep *.jar | tail -n 1
@@ -42,5 +42,8 @@ echo ">$JAR_NAME 실행"
 #    -Dspring.config.location=classpath:/application.properties,classpath:/application-real.properties,/home/ec2-user/app/application-oauth.properties,/home/ec2-user/app/application-real-db.properties \
 #    -Dspring.profiles.active=real \
 #    $JAR_NAME > $REPOSITORY/nohup.out 2>&1 &
-nohup java -jar -Dspring.config.location=classpath:/application.properties,classpath:/application-real.properties,/home/ec2-user/app/application-oauth.properties,/home/ec2-user/app/application-real-db.properties -Dspring.profiles.active=real /home/ec2-user/app/step2/zip/springboot2webservice-1.0-SNAPSHOT.jar > /home/ec2-user/app/step2/nohup.out 2>&1 &
+nohup java -jar \
+      -Dspring.config.location=classpath:/application.properties,classpath:/application-real.properties,/home/ec2-user/app/application-oauth.properties,/home/ec2-user/app/application-real-db.properties \
+      -Dspring.profiles.active=real \
+      $REPOSITORY/$JAR_NAME > /home/ec2-user/app/step2/nohup.out 2>&1 &
 
