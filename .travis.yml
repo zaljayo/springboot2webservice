@@ -13,14 +13,8 @@ cache:
     - '$Home/.gradle'
 script: "./gradlew clean build"
 
-#before_install:
-  #- chmod +x gradlew
-
-# CI 실행 완료 시 메일로 알람
-notifications:
-  email:
-    recipients:
-      - zaljayo@hanmail.net
+before_install:
+  - chmod +x gradlew
 
 # aws s3에 저장
 before_deploy:
@@ -48,3 +42,9 @@ deploy:
     deployment_group: springboot2-webservice-group
     region: ap-northeast-2
     wait-until-deployed: true
+
+# CI 실행 완료 시 메일로 알람
+notifications:
+  email:
+    recipients:
+      - zaljayo@hanmail.net
