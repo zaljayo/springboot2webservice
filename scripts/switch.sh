@@ -14,7 +14,8 @@ function switch_proxy() {
     #홀따옴표 (') : 변수명을 그대로 출력
     #여기서는 쌍따옴표 사용해야함
     #앞에서 넘겨준 문장을 service-url.inc에 덮어씀
-    echo "set \$service_url http://127.0.0.1:${IDLE_PORT};" | sudo tee /etc/nginx/conf.d/service-url.inc
+    #echo "set \$service_url http://127.0.0.1:${IDLE_PORT};" | sudo tee /etc/nginx/conf.d/service-url.inc
+    echo "set \$service_url http://ec2-52-78-4-210.ap-northeast-2.compute.amazonaws.com:${IDLE_PORT};" | sudo tee /etc/nginx/conf.d/service-url.inc
 
     echo "> 엔진엑스 Reload"
     sudo service nginx reload
