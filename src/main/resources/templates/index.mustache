@@ -5,7 +5,7 @@
         <!-- 로그인 기능 영역-->
         <div class="row">
             <div class="col-md-6">
-                <a href="/posts/save" role="button" class="btn btn-primary">글등록</a>
+                <a href="http://ec2-52-78-4-210.ap-northeast-2.compute.amazonaws.com:8082/posts/save" role="button" class="btn btn-primary">글등록</a>
             {{#userName}} <!-- 머스테치는 if문 제공하지않음, true/false 판단-->
             <!-- 스프링 시큐리티에서 기본적으로 제공하는 로그아웃 url-->
                 Logged in as: <span id="user">{{userName}}</span><a href="/logout" class="btn btn-info active" role="button">Logout</a>
@@ -13,8 +13,8 @@
             <!-- 머스테치에서 해당값지 존재 하지 않는경우 ^ 사용-->
             {{^userName}}
             <!-- 스프링 시큐리티에서 기본적으로 제공하는 로그인 url-->
-                <a href="http://ec2-52-78-4-210.ap-northeast-2.compute.amazonaws.com:8081/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
-                <a href="http://ec2-52-78-4-210.ap-northeast-2.compute.amazonaws.com:8081/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
+                <a href="http://ec2-52-78-4-210.ap-northeast-2.compute.amazonaws.com:8082/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+                <a href="http://ec2-52-78-4-210.ap-northeast-2.compute.amazonaws.com:8082/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
             {{/userName}}
             </div>
         </div>
